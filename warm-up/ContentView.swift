@@ -3,6 +3,39 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showIcon: Bool = true
+    @State private var showBackground: Bool = true
+    
+    var body: some View {
+        ZStack {
+            GroovyBackground()
+            VStack {
+                Spacer()
+                if showIcon {
+                    UserImage()
+                        .transition(.scale.combined(with: .opacity))
+                }
+                Spacer()
+                Button("Show/Hide") {
+                    withAnimation {
+                        showIcon.toggle()
+                    }
+                }
+                .buttonStyle(.borderedProminent)
+            }
+        }
+    }
+}
+
+struct UserImage: View {
+    var body: some View {
+        Image(systemName: "person.circle.fill")
+            .font(.system(size: 200))
+            .foregroundStyle(.white)
+    }
+}
+
+struct GroovyBackground: View {
     var body: some View {
         GeometryReader { geometry in
             MeshGradient(
