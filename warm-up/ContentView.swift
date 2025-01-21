@@ -8,14 +8,17 @@ struct ContentView: View {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
+                .background(Color.gray.opacity(0.2))
             Text("Hello, world!")
-            CardView()
+                .background(Color.gray.opacity(0.2))
+            ShapeView()
         }
+        .background(Color.gray.opacity(0.2))
         .padding()
     }
 }
 
-struct CardView: View {
+struct ShapeView: View {
     var body: some View {
         GeometryReader { geometry in
             let xOrigin = geometry.size.width / 2
