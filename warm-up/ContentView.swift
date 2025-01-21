@@ -18,22 +18,16 @@ struct ContentView: View {
 struct CardView: View {
     var body: some View {
         GeometryReader { geometry in
-            let xStart = (geometry.size.width / 2) - 50
-            let xEnd = (geometry.size.width / 2) + 50
+            let xOrigin = geometry.size.width / 2
+            let yOrigin = geometry.size.height / 2
             
-            ZStack {
-                Path { path in
-                    path.move(to: CGPoint(x: xStart, y: 50))
-                    path.addLine(to: CGPoint(x: xEnd, y: 150))
-                }
-                .stroke(.blue, style: StrokeStyle(lineWidth: 12, lineCap: .round))
-                
-                Path { path in
-                    path.move(to: CGPoint(x: xEnd, y: 50))
-                    path.addLine(to: CGPoint(x: xStart, y: 150))
-                }
-                .stroke(.blue, style: StrokeStyle(lineWidth: 12, lineCap: .round))
+            Path { path in
+                path.move(to: CGPoint(x: xOrigin - 50, y: yOrigin - 50))
+                path.addLine(to: CGPoint(x: xOrigin + 50, y: yOrigin + 50))
+                path.move(to: CGPoint(x: xOrigin - 50, y: yOrigin + 50))
+                path.addLine(to: CGPoint(x: xOrigin + 50, y: yOrigin - 50))
             }
+            .stroke(.blue, style: StrokeStyle(lineWidth: 12, lineCap: .round))
             .background(Color.gray.opacity(0.2))
         }
     }
