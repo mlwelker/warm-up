@@ -11,7 +11,10 @@ struct ContentView: View {
                 .background(Color.gray.opacity(0.2))
             Text("Hello, world!")
                 .background(Color.gray.opacity(0.2))
-            ShapeView()
+            HStack {
+                ShapeView()
+                ShapeView()
+            }
         }
         .background(Color.gray.opacity(0.2))
         .padding()
@@ -24,14 +27,10 @@ struct ShapeView: View {
             let xOrigin = geometry.size.width / 2
             let yOrigin = geometry.size.height / 2
             
-            Path { path in
-                path.move(to: CGPoint(x: xOrigin - 50, y: yOrigin - 50))
-                path.addLine(to: CGPoint(x: xOrigin + 50, y: yOrigin + 50))
-                path.move(to: CGPoint(x: xOrigin - 50, y: yOrigin + 50))
-                path.addLine(to: CGPoint(x: xOrigin + 50, y: yOrigin - 50))
-            }
-            .stroke(.blue, style: StrokeStyle(lineWidth: 12, lineCap: .round))
-            .background(Color.gray.opacity(0.2))
+            RoundedRectangle(cornerRadius: 12)
+                .aspectRatio(2/3, contentMode: .fit)
+//                .stroke(.blue, style: StrokeStyle(lineWidth: 12, lineCap: .round))
+                .background(Color.gray.opacity(0.2))
         }
     }
 }
