@@ -30,7 +30,9 @@ struct ContentView: View {
 struct UserImage: View {
     var body: some View {
         Image(systemName: "person.circle.fill")
-            .font(.system(size: 200))
+            .resizable()
+            .scaledToFit()
+            .padding()
             .foregroundStyle(.white)
     }
 }
