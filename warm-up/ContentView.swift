@@ -48,34 +48,42 @@ struct RatingView: View {
                 .aspectRatio(5/3, contentMode: .fit)
                 .padding(40)
             
-            HStack {
-                Button {
-                    withAnimation {
-                        rating -= 1
-                    }
-                } label: {
-                    Image(systemName: "minus.circle")
-                }.disabled(rating == 0)
-                    .font(.largeTitle)
+            VStack {
                 
-                Spacer()
+                Gauge(value: rating, in: 0...9) {
+                    Text("Rating")
+                }
+                .padding(.horizontal, 80)
                 
-                Text(String(rating))
-                    .contentTransition(.numericText(value: rating))
-                    .font(Font.system(size: 80, weight: .bold))
-                
-                Spacer()
-                
-                Button {
-                    withAnimation {
-                        rating += 1
-                    }
-                } label: {
-                    Image(systemName: "plus.circle")
-                }.disabled(rating >= 9)
-                    .font(.largeTitle)
+                HStack {
+                    Button {
+                        withAnimation {
+                            rating -= 1
+                        }
+                    } label: {
+                        Image(systemName: "minus.circle")
+                    }.disabled(rating == 0)
+                        .font(.largeTitle)
+                    
+                    Spacer()
+                    
+                    Text(String(rating))
+                        .contentTransition(.numericText(value: rating))
+                        .font(Font.system(size: 80, weight: .bold))
+                    
+                    Spacer()
+                    
+                    Button {
+                        withAnimation {
+                            rating += 1
+                        }
+                    } label: {
+                        Image(systemName: "plus.circle")
+                    }.disabled(rating >= 9)
+                        .font(.largeTitle)
+                }
+                .padding(.horizontal, 80)
             }
-            .padding(.horizontal, 80)
         }
     }
 }
