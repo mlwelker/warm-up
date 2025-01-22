@@ -34,7 +34,7 @@ struct UserHideShowView: View {
 }
 
 struct RatingView: View {
-    @State private var rating: Int = 5
+    @State private var rating: Double = 5.0
     
     var body: some View {
         ZStack {
@@ -50,7 +50,9 @@ struct RatingView: View {
             
             HStack {
                 Button {
-                    rating -= 1
+                    withAnimation {
+                        rating -= 1
+                    }
                 } label: {
                     Image(systemName: "minus.circle")
                 }.disabled(rating == 0)
@@ -58,16 +60,19 @@ struct RatingView: View {
                 
                 Spacer()
                 
-                Text(String(format: "%02d", rating))
+                Text(String(rating))
+                    .contentTransition(.numericText(value: rating))
                     .font(Font.system(size: 80, weight: .bold))
                 
                 Spacer()
                 
                 Button {
-                    rating += 1
+                    withAnimation {
+                        rating += 1
+                    }
                 } label: {
                     Image(systemName: "plus.circle")
-                }.disabled(rating >= 10)
+                }.disabled(rating >= 9)
                     .font(.largeTitle)
             }
             .padding(.horizontal, 80)
