@@ -3,12 +3,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var rating: Double = 5.0
+    
     var body: some View {
         ZStack {
             GroovyBackground()
             VStack {
                 Spacer()
-                RatingView()
+                RatingView(rating: $rating)
                 Spacer()
             }
         }
@@ -34,7 +36,7 @@ struct UserHideShowView: View {
 }
 
 struct RatingView: View {
-    @State private var rating: Double = 5.0
+    @Binding var rating: Double
     
     var body: some View {
         ZStack {
